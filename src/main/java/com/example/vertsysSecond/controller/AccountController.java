@@ -2,15 +2,18 @@ package com.example.vertsysSecond.controller;
 
 
 import com.example.vertsysSecond.models.Account;
-import com.example.vertsysSecond.persistence.entity.AccountEntity;
 import com.example.vertsysSecond.service.AccountService;
+
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Optional;
 @CrossOrigin(origins ="*")
 @Component
 @RestController
@@ -22,6 +25,13 @@ public class AccountController {
         this.accountService = accountService;
     }
 
+
+    @Operation(summary = "getAccountInformations", description = "get the data ot the account")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Account information", content = @Content),
+            @ApiResponse(responseCode = "404", description = "Account not found", content = @Content),
+            @ApiResponse(responseCode = "500", description = "internal error", content = @Content)
+    })
     @PostMapping("/accountValidation")
     public Long getAccount (@RequestBody Account user) {
         return accountService.getAccount(user).getId();
