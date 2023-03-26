@@ -26,10 +26,10 @@ public class AccountController {
     }
 
 
-    @Operation(summary = "getAccountInformations", description = "get the data ot the account")
+    @Operation(summary = "validateAccount", description = "validates the users input and checks, if his credentials are valid")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Account information", content = @Content),
-            @ApiResponse(responseCode = "404", description = "Account not found", content = @Content),
+            @ApiResponse(responseCode = "200", description = "Input is valid", content = @Content),
+            @ApiResponse(responseCode = "404", description = "Input is not valid", content = @Content),
             @ApiResponse(responseCode = "500", description = "internal error", content = @Content)
     })
     @PostMapping("/accountValidation")

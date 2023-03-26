@@ -5,6 +5,10 @@ import com.example.vertsysSecond.models.Profile;
 import com.example.vertsysSecond.persistence.entity.PictureEntity;
 import com.example.vertsysSecond.persistence.entity.ProfileEntity;
 import com.example.vertsysSecond.service.ProfileService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
@@ -28,6 +32,13 @@ public class ProfileController {
         this.profileService = profileService;
     }
 
+
+    @Operation(summary = "uploadProfilePictureById", description = "uploads a profile picture to the corresponding profile via its ID")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "upload successful", content = @Content),
+            @ApiResponse(responseCode = "404", description = "Profile not found", content = @Content),
+            @ApiResponse(responseCode = "500", description = "internal error", content = @Content)
+    })
     @PostMapping("/uploadImage/{id}")
     public void uploadPicture(MultipartFile image, @PathVariable Long id) throws IOException {
         profileService.uploadPicture(image, id);
