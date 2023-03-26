@@ -38,7 +38,6 @@ public class ProfileService {
             pictureEntity.setNamePicture(image.getOriginalFilename());
             pictureEntity.setType(image.getContentType());
             pictureRepository.saveAndFlush(pictureEntity);
-
         } else {
             throw new RuntimeException("Dateityp der Bilddatei entspricht nicht den Vorgaben(Jpeg oder png).");
         }
