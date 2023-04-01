@@ -91,14 +91,6 @@ public class ProfileService {
         return profileRepository.save(profileEntity).getId();
     }
 
-    public void updateEmail(Long id, String email) {
-        ProfileEntity updProfileEntity = profileRepository.getById(id);
-        if (email != null) {
-            updProfileEntity.setEmail(email);
-        }
-        profileRepository.save(updProfileEntity);
-    }
-
     public void updateProfile(Profile newProfile) {
         ProfileEntity currentProfile = profileRepository.getById(newProfile.getId());
         String validateString = "String";
